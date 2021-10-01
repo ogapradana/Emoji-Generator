@@ -1,0 +1,94 @@
+.example-container {
+    height: 100%;
+    border: 1px solid rgba(0, 0, 0, 0.5);
+}
+
+.example-sidenav-content {
+    height: 100%;
+    background-color: #ffffff;
+    padding: 20px;
+}
+
+.icon{
+    text-align: right;
+
+    mat-icon{
+        margin: 0 10px;
+    }
+}
+
+mat-divider{
+    margin:10px 0 30px 0;
+}
+
+::ng-deep .example-sidenav {
+    width: 280px;
+    padding: 20px;
+    background-color: #F1F1F1;
+
+    .mat-drawer-inner-container{
+        display: flex;
+        flex-direction: column;
+
+        .header{
+            ::ng-deep mat-form-field{
+                .mat-form-field-outline {
+                    background-color: #ffffff;
+                }
+                .mat-form-field-infix{
+                    padding: 10px 5px;
+                    border-top: none;
+                }
+            }
+        }
+
+        .item-list{
+            flex: auto;
+
+            h5{
+                margin: 10px 0;
+                color: #3c3c3cb3;;
+            }
+
+            .infinite-scroll{
+                overflow: auto;
+                max-height: 300px;
+
+                mat-list-option{
+                    font-weight: 600;
+                }
+
+                &::-webkit-scrollbar {
+                    width: 5px;
+                }
+                &::-webkit-scrollbar-track {
+                    background: #dadada; 
+                }
+                &::-webkit-scrollbar-thumb {
+                    background: #aeaeae; 
+                }
+                
+            }
+
+            &:hover{
+                .infinite-scroll{
+                    &::-webkit-scrollbar-track {
+                        background: #a7a7a7; 
+                    }
+                    &::-webkit-scrollbar-thumb {
+                        background: #676767; 
+                    }
+                }
+            }
+        }
+
+        button{
+            mat-icon{
+                font-size: 18px;
+                margin-right: 5px;
+            }
+            margin-top: auto;
+        }
+    }
+
+}

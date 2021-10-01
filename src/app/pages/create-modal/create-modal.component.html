@@ -1,0 +1,62 @@
+<div class="dialog-title" mat-dialog-title>
+    <span>Add a table</span>
+    <button type="button" mat-icon-button mat-dialog-close>
+        <mat-icon>close</mat-icon>
+    </button>
+</div>
+<div class="dialog-content" mat-dialog-content>
+    <form [formGroup]="formControl">
+        <mat-form-field appearance="outline">
+            <mat-label>Name</mat-label>
+            <input matInput formControlName="name">
+            <mat-error>Name Required</mat-error>
+        </mat-form-field>
+        <mat-form-field (click)="onEmojiPickerClick()" appearance="outline">
+            <mat-label>Icon</mat-label>
+            <input readonly matInput formControlName="icon">
+            <mat-error>Icon Required</mat-error>
+        </mat-form-field>
+        <emoji-mart 
+            *ngIf="showEmoji"
+            class="emoji-selection"
+            set="facebook"
+            [totalFrequentLines]=1
+            [showPreview]=false 
+            (emojiSelect)="onSelectEmoji($event)">
+        </emoji-mart>
+        <div *ngIf="!data.segmentId">
+            <mat-form-field appearance="outline">
+                <mat-label>Description</mat-label>
+                <textarea matInput></textarea>
+            </mat-form-field>
+        </div>
+        <div *ngIf="data.segmentId">
+            <mat-form-field (click)="onColorPickerClicked()" appearance="outline" class="color-picker-input">
+                <mat-label>Color</mat-label>
+                <div
+                    *ngIf="formControl.get('color')?.status !== 'INVALID'"
+                    class="selected-color"
+                    [ngStyle]="{'background-color': formControl.get('color')?.value}">
+                </div>
+                <input matInput readonly formControlName="color">
+                <mat-error>Color Required</mat-error>
+            </mat-form-field>
+            <div class="color-picker" *ngIf="showColorPicker">
+                <div
+                    (click)="onSelectColor(color)"
+                    class="color"
+                    *ngFor="let color of colorPalette"
+                    [ngStyle]="{'background-color': color}">
+                </div>
+            </div>
+        </div>
+    </form>
+</div>
+<div mat-dialog-actions>
+    <button mat-button mat-dialog-close>Close</button>
+    <button
+        mat-button
+        (click)="onSave()">
+        Save
+    </button>
+</div>

@@ -1,0 +1,45 @@
+<mat-drawer-container class="example-container" autosize>
+    <mat-drawer opened #drawer class="example-sidenav" mode="side">
+        <!-- <button type="button" mat-button (click)="drawer.toggle()">
+            Toggle sidenav
+        </button> -->
+        <div class="header">
+            <h2>Prospector</h2>
+            <mat-form-field class="example-full-width" appearance="outline">
+                <input (change)="onSearch($event)" matInput placeholder="Search for a table or a segment">
+            </mat-form-field>
+        </div>
+        <div class="item-list">
+            <h5>SEGMENTS</h5>
+            <div class="infinite-scroll">
+                <mat-selection-list *ngIf="filteredSearch.length <= 0" #shoes [multiple]="false">
+                    <mat-list-option *ngFor="let segment of segmentService.segments | async">
+                        {{segment.icon}} {{segment.name}}
+                    </mat-list-option>
+                </mat-selection-list>
+                <mat-selection-list *ngIf="filteredSearch.length >= 1" #shoes [multiple]="false">
+                    <mat-list-option *ngFor="let segment of filteredSearch">
+                        {{segment.icon}} {{segment.name}}
+                    </mat-list-option>
+                </mat-selection-list>
+            </div>
+        </div>
+        <button mat-flat-button color="primary" (click)="openCreateDialog()">
+            <mat-icon [inline]=true>add</mat-icon>
+            Add a Segment
+        </button>
+    </mat-drawer>
+  
+    <div class="example-sidenav-content">
+        <div class="icon">
+            <mat-icon inline aria-hidden="false" aria-label="Example home icon">home</mat-icon>
+            <mat-icon inline aria-hidden="false" aria-label="Example home icon">payments</mat-icon>
+            <mat-icon inline aria-hidden="false" aria-label="Example home icon">shopping_basket</mat-icon>
+            <mat-icon inline aria-hidden="false" aria-label="Example home icon">redeem</mat-icon>
+            <mat-icon inline aria-hidden="false" aria-label="Example home icon">credit_score</mat-icon>
+        </div>
+        <mat-divider></mat-divider>
+        <router-outlet></router-outlet>
+    </div>
+  
+  </mat-drawer-container>

@@ -1,0 +1,29 @@
+<div class="expansion-panel"
+    *ngFor="let segments of segmentService.segments | async">
+    <div class="header">
+       {{segments.icon}} {{segments.name}}
+    </div>
+    <div class="body">
+        <div
+            class="table-item"
+            *ngFor="let segment of segments.table">
+            <div
+                class="icon"
+                [ngStyle]="{'border-color': segment.color}">
+                <span>{{segment.icon}}</span>
+                <div
+                    [ngStyle]="{'background-color': segment.color}" 
+                    class="color-code">
+                </div>
+            </div>
+            <span>
+                {{ segment.name }}
+            </span>
+        </div>
+        <div class="table-item add" (click)="openCreateDialog(segments.id)">
+            <div class="icon">
+                <mat-icon>add</mat-icon>
+            </div>
+        </div>
+    </div>
+</div>
